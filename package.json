@@ -20,11 +20,14 @@
   },
   "homepage": "https://github.com/davidchappy/stasher-api#readme",
   "dependencies": {
+    "@apollo/server": "^4.2.2",
     "@supabase/supabase-js": "^2.1.1",
     "@types/cors": "^2.8.12",
+    "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "graphql": "^16.6.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.14",

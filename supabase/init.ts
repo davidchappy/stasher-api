@@ -1,7 +1,5 @@
 import { createClient } from "@supabase/supabase-js"
 
-console.log(process.env.SUPABASE_PROJECT_URL)
-
 const supabaseUrl =
   process.env.SUPABASE_PROJECT_URL || "https://jmxrqchbqtadpzvjasgo.supabase.co"
 const supabaseKey =
