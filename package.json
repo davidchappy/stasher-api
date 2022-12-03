@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "dev": "PORT=8000 concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/davidchappy/stasher-api#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.1.1",
+    "@types/cors": "^2.8.12",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.1"
   },

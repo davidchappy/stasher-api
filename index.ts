@@ -1,14 +1,24 @@
-import express, { Express, Request, Response } from "express"
-import dotenv from "dotenv"
-
+import * as dotenv from "dotenv"
 dotenv.config()
+dotenv.config({ path: ".env.local" })
+
+import cors from "cors"
+import express, { Express, Request, Response } from "express"
+import getSupabase from "./supabase/init"
 
 const app: Express = express()
 const port = process.env.PORT || 3000
 
-app.all("/", (req: Request, res: Response) => {
+const supabase = getSupabase()
+
+app.use(cors())
+
+app.all("/", async (req: Request, res: Response) => {
   console.log("Just got a request!")
-  res.send("Express ++ TypeScript Server")
+
+  const { data, error } = await supabase.from("goodie").select()
+
+  res.send({ test: "hello world" })
 })
 
 app.listen(port, () => {
