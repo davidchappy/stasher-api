@@ -18,19 +18,17 @@ const drainHttpServer_1 = require("@apollo/server/plugin/drainHttpServer");
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
-const init_1 = __importDefault(require("./supabase/init"));
+const init_1 = __importDefault(require("../supabase/init"));
 const express_1 = __importDefault(require("express"));
 const fs_1 = require("fs");
-const query_1 = __importDefault(require("./graphql/query"));
+const resolvers_1 = __importDefault(require("./resolvers"));
 const typeDefs = (0, fs_1.readFileSync)("./graphql/schema.graphql", { encoding: "utf8" });
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, express_1.default)();
     const httpServer = http_1.default.createServer(app);
     const server = new server_1.ApolloServer({
         typeDefs,
-        resolvers: {
-            Query: query_1.default
-        },
+        resolvers: resolvers_1.default,
         plugins: [(0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer })]
     });
     yield server.start();

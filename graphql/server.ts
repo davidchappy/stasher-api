@@ -4,39 +4,16 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import http from "http"
 import cors from "cors"
 import bodyParser from "body-parser"
-import getSupabase from "./supabase/init"
+import getSupabase from "../supabase/init"
 import express, { Express, Request } from "express"
+import { readFileSync } from "fs"
+import resolvers from "./resolvers"
 
-interface Context {
+const typeDefs = readFileSync("./graphql/schema.graphql", { encoding: "utf8" })
+
+export interface Context {
   token?: string
   supabase?: ReturnType<typeof getSupabase>
-}
-
-const typeDefs = `#graphql
-  type Goodie {
-    id: Int
-    link: String
-    inserted_at: String
-    updated_at: String
-  }
-
-  type Query {
-    goodies: [Goodie]
-  }
-`
-
-const resolvers = {
-  Query: {
-    goodies: async (_: any, args: any, context: Context) => {
-      const { token, supabase } = context
-
-      const { data, error } = await supabase!.from("goodie").select()
-
-      console.log(data, error)
-
-      return data
-    }
-  }
 }
 
 const startServer = async () => {

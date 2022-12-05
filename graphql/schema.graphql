@@ -1,0 +1,20 @@
+input GoodieFilter {
+  search: String
+}
+
+type Query {
+  goodies(filter: GoodieFilter): [Goodie]
+}
+
+type Mutation {
+  addGoodie(link: String!): Boolean
+  removeGoodie(id: ID!): Goodie
+  updateGoodie(id: ID!, link: String!): Boolean
+}
+
+type Goodie {
+  id: Int
+  link: String
+  inserted_at: String
+  updated_at: String
+}
