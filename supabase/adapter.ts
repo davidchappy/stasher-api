@@ -31,8 +31,6 @@ export const addStashable = async (
 ) => {
   const { error } = await supabase!.from("stashable").insert({ link })
 
-  console.log({ error })
-
   if (error) {
     throw new Error(error.message)
   }
@@ -44,16 +42,13 @@ export const deleteStashable = async (
   supabase: ReturnType<typeof getSupabase>,
   id: number
 ) => {
-  const { data, error } = await supabase!
-    .from("stashable")
-    .delete()
-    .eq("id", id)
+  const { error } = await supabase!.from("stashable").delete().eq("id", id)
 
   if (error) {
     throw new Error(error.message)
   }
 
-  return data
+  return true
 }
 
 export const updateStashable = async (

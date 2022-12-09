@@ -18,7 +18,7 @@ export type Scalars = {
 export type Mutation = {
   __typename?: 'Mutation';
   addStashable?: Maybe<Scalars['Boolean']>;
-  deleteStashable?: Maybe<Stashable>;
+  deleteStashable?: Maybe<Scalars['Boolean']>;
   updateStashable?: Maybe<Scalars['Boolean']>;
 };
 
@@ -154,7 +154,7 @@ export type ResolversParentTypes = ResolversObject<{
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   addStashable?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationAddStashableArgs, 'link'>>;
-  deleteStashable?: Resolver<Maybe<ResolversTypes['Stashable']>, ParentType, ContextType, RequireFields<MutationDeleteStashableArgs, 'id'>>;
+  deleteStashable?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteStashableArgs, 'id'>>;
   updateStashable?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationUpdateStashableArgs, 'id' | 'link'>>;
 }>;
 

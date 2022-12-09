@@ -8,7 +8,7 @@ type Query {
 
 type Mutation {
   addStashable(link: String!): Boolean
-  deleteStashable(id: ID!): Stashable
+  deleteStashable(id: ID!): Boolean
   updateStashable(id: ID!, link: String!): Boolean
 }
 

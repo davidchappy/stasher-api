@@ -10,18 +10,16 @@ const Mutations = {
   ): Promise<boolean> => {
     const { supabase } = context
 
-    console.log("adding stashable", args.link)
-
     return db.addStashable(supabase!, args.link)
   },
   deleteStashable: async (
     _: any,
     args: any,
     context: Context
-  ): Promise<types.Stashable> => {
+  ): Promise<boolean> => {
     const { supabase } = context
 
-    return db.deleteStashable(supabase!, args.id) as Promise<types.Stashable>
+    return db.deleteStashable(supabase!, args.id)
   },
   updateStashable: async (
     _: any,
