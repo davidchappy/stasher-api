@@ -3,14 +3,16 @@ import * as db from "../supabase/adapter"
 import * as types from "../graphql/__generated__/graphql"
 
 const Query = {
-  goodies: async (
+  stashables: async (
     _: any,
     args: any,
     context: Context
-  ): Promise<types.Goodie[]> => {
+  ): Promise<types.Stashable[]> => {
     const { supabase } = context
 
-    return db.getGoodies(supabase!, args.filter) as Promise<types.Goodie[]>
+    return db.getStashables(supabase!, args.filter) as Promise<
+      types.Stashable[]
+    >
   }
 }
 

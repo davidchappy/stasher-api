@@ -15,49 +15,49 @@ export type Scalars = {
   Float: number;
 };
 
-export type Goodie = {
-  __typename?: 'Goodie';
-  id?: Maybe<Scalars['Int']>;
-  inserted_at?: Maybe<Scalars['String']>;
-  link?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['String']>;
-};
-
-export type GoodieFilter = {
-  search?: InputMaybe<Scalars['String']>;
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
-  addGoodie?: Maybe<Scalars['Boolean']>;
-  removeGoodie?: Maybe<Goodie>;
-  updateGoodie?: Maybe<Scalars['Boolean']>;
+  addStashable?: Maybe<Scalars['Boolean']>;
+  deleteStashable?: Maybe<Stashable>;
+  updateStashable?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationAddGoodieArgs = {
+export type MutationAddStashableArgs = {
   link: Scalars['String'];
 };
 
 
-export type MutationRemoveGoodieArgs = {
+export type MutationDeleteStashableArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationUpdateGoodieArgs = {
+export type MutationUpdateStashableArgs = {
   id: Scalars['ID'];
   link: Scalars['String'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  goodies?: Maybe<Array<Maybe<Goodie>>>;
+  stashables?: Maybe<Array<Maybe<Stashable>>>;
 };
 
 
-export type QueryGoodiesArgs = {
-  filter?: InputMaybe<GoodieFilter>;
+export type QueryStashablesArgs = {
+  filter?: InputMaybe<StashableFilter>;
+};
+
+export type Stashable = {
+  __typename?: 'Stashable';
+  id?: Maybe<Scalars['Int']>;
+  inserted_at?: Maybe<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type StashableFilter = {
+  search?: InputMaybe<Scalars['String']>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -131,28 +131,38 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  Goodie: ResolverTypeWrapper<Goodie>;
-  GoodieFilter: GoodieFilter;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  Stashable: ResolverTypeWrapper<Stashable>;
+  StashableFilter: StashableFilter;
   String: ResolverTypeWrapper<Scalars['String']>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
-  Goodie: Goodie;
-  GoodieFilter: GoodieFilter;
   ID: Scalars['ID'];
   Int: Scalars['Int'];
   Mutation: {};
   Query: {};
+  Stashable: Stashable;
+  StashableFilter: StashableFilter;
   String: Scalars['String'];
 }>;
 
-export type GoodieResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Goodie'] = ResolversParentTypes['Goodie']> = ResolversObject<{
+export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  addStashable?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationAddStashableArgs, 'link'>>;
+  deleteStashable?: Resolver<Maybe<ResolversTypes['Stashable']>, ParentType, ContextType, RequireFields<MutationDeleteStashableArgs, 'id'>>;
+  updateStashable?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationUpdateStashableArgs, 'id' | 'link'>>;
+}>;
+
+export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+  stashables?: Resolver<Maybe<Array<Maybe<ResolversTypes['Stashable']>>>, ParentType, ContextType, Partial<QueryStashablesArgs>>;
+}>;
+
+export type StashableResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Stashable'] = ResolversParentTypes['Stashable']> = ResolversObject<{
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   inserted_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   link?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -160,19 +170,9 @@ export type GoodieResolvers<ContextType = Context, ParentType extends ResolversP
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
-  addGoodie?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationAddGoodieArgs, 'link'>>;
-  removeGoodie?: Resolver<Maybe<ResolversTypes['Goodie']>, ParentType, ContextType, RequireFields<MutationRemoveGoodieArgs, 'id'>>;
-  updateGoodie?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationUpdateGoodieArgs, 'id' | 'link'>>;
-}>;
-
-export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  goodies?: Resolver<Maybe<Array<Maybe<ResolversTypes['Goodie']>>>, ParentType, ContextType, Partial<QueryGoodiesArgs>>;
-}>;
-
 export type Resolvers<ContextType = Context> = ResolversObject<{
-  Goodie?: GoodieResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Stashable?: StashableResolvers<ContextType>;
 }>;
 

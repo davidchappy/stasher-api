@@ -1,18 +1,18 @@
-input GoodieFilter {
+input StashableFilter {
   search: String
 }
 
 type Query {
-  goodies(filter: GoodieFilter): [Goodie]
+  stashables(filter: StashableFilter): [Stashable]
 }
 
 type Mutation {
-  addGoodie(link: String!): Boolean
-  removeGoodie(id: ID!): Goodie
-  updateGoodie(id: ID!, link: String!): Boolean
+  addStashable(link: String!): Boolean
+  deleteStashable(id: ID!): Stashable
+  updateStashable(id: ID!, link: String!): Boolean
 }
 
-type Goodie {
+type Stashable {
   id: Int
   link: String
   inserted_at: String

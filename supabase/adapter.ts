@@ -1,20 +1,20 @@
 import { Database } from "./__generated__/supabase"
 import getSupabase from "./init"
 
-// type Goodie = Database["public"]["Tables"]["goodie"]["Row"]
+// type Stashable = Database["public"]["Tables"]["stashable"]["Row"]
 
-type GoodieFilters = {
+type StashableFilters = {
   search?: string
 }
 
-export const getGoodies = async (
+export const getStashables = async (
   supabase: ReturnType<typeof getSupabase>,
-  filter: GoodieFilters = {}
+  filter: StashableFilters = {}
 ) => {
   const search = filter?.search
 
   const { data, error } = await supabase!
-    .from("goodie")
+    .from("stashable")
     .select("id, link, stash_id")
   // .ilike("link", `%${search}%`)
 
@@ -25,11 +25,11 @@ export const getGoodies = async (
   return data
 }
 
-export const addGoodie = async (
+export const addStashable = async (
   supabase: ReturnType<typeof getSupabase>,
   link: string
 ) => {
-  const { error } = await supabase!.from("goodie").insert({ link })
+  const { error } = await supabase!.from("stashable").insert({ link })
 
   console.log({ error })
 
@@ -40,11 +40,14 @@ export const addGoodie = async (
   return true
 }
 
-export const removeGoodie = async (
+export const deleteStashable = async (
   supabase: ReturnType<typeof getSupabase>,
   id: number
 ) => {
-  const { data, error } = await supabase!.from("goodie").delete().eq("id", id)
+  const { data, error } = await supabase!
+    .from("stashable")
+    .delete()
+    .eq("id", id)
 
   if (error) {
     throw new Error(error.message)
@@ -53,12 +56,15 @@ export const removeGoodie = async (
   return data
 }
 
-export const updateGoodie = async (
+export const updateStashable = async (
   supabase: ReturnType<typeof getSupabase>,
   id: number,
   link: string
 ) => {
-  const { error } = await supabase!.from("goodie").update({ link }).eq("id", id)
+  const { error } = await supabase!
+    .from("stashable")
+    .update({ link })
+    .eq("id", id)
 
   if (error) {
     throw new Error(error.message)

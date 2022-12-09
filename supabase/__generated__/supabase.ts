@@ -9,29 +9,6 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      goodie: {
-        Row: {
-          id: number
-          inserted_at: string
-          updated_at: string
-          link: string | null
-          stash_id: number | null
-        }
-        Insert: {
-          id?: number
-          inserted_at?: string
-          updated_at?: string
-          link?: string | null
-          stash_id?: number | null
-        }
-        Update: {
-          id?: number
-          inserted_at?: string
-          updated_at?: string
-          link?: string | null
-          stash_id?: number | null
-        }
-      }
       stash: {
         Row: {
           id: number
@@ -56,6 +33,29 @@ export interface Database {
           name?: string
           description?: string | null
           data?: Json | null
+        }
+      }
+      stashable: {
+        Row: {
+          id: number
+          inserted_at: string
+          updated_at: string
+          link: string | null
+          stash_id: number | null
+        }
+        Insert: {
+          id?: number
+          inserted_at?: string
+          updated_at?: string
+          link?: string | null
+          stash_id?: number | null
+        }
+        Update: {
+          id?: number
+          inserted_at?: string
+          updated_at?: string
+          link?: string | null
+          stash_id?: number | null
         }
       }
     }
