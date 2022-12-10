@@ -1,11 +1,7 @@
-# starter-express-api
+# Stasher API
 
-This is the simplest possible nodejs api using express that responds to any request with: 
-```
-Yo!
-```
+A Node/Express/Apollo/Supabase backend for the Stasher app.
 
-### Deploy it in 7 seconds: 
+Hosted by [Cyclic](https://deploy.cyclic.app/).
 
-[![Deploy to Cyclic](https://deploy.cyclic.app/button.svg)](https://deploy.cyclic.app/)
-
+Note: Use NPM. Cyclic doesn't seem to build correctly with Yarn (package sizes are always too large).
