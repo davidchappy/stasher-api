@@ -9,7 +9,7 @@
     "generate-supabase": "npx supabase gen types typescript --project-id \"jmxrqchbqtadpzvjasgo\" --schema public > supabase/__generated__/supabase.ts",
     "generate": "yarn generate-gql && yarn generate-supabase",
     "build": "npx tsc",
-    "start": "node dist/index.js --loglevel=verbose",
+    "start": "npm run build && node dist/index.js",
     "dev": "SERVER_PORT=8000 concurrently --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"graphql-codegen --watch '**/*.ts'\"  \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "dev:server": "SERVER_PORT=8000 nodemon -q dist/index.js"
   },
