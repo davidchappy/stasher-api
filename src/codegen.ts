@@ -4,7 +4,7 @@ const config: CodegenConfig = {
   overwrite: true,
   schema: "src/graphql/schema.graphql",
   generates: {
-    "graphql/__generated__/graphql.ts": {
+    "src/graphql/__generated__/graphql.ts": {
       plugins: ["typescript", "typescript-resolvers"],
       config: {
         useIndexSignature: true,

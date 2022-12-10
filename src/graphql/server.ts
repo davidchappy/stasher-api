@@ -4,12 +4,14 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import http from "http"
 import cors from "cors"
 import bodyParser from "body-parser"
-import getSupabase from "../supabase/init"
+import getSupabase from "../supabase/init.js"
 import express, { Express, Request } from "express"
 import { readFileSync } from "fs"
-import resolvers from "./resolvers"
+import resolvers from "./resolvers.js"
 
-const typeDefs = readFileSync("./graphql/schema.graphql", { encoding: "utf8" })
+const typeDefs = readFileSync("src/graphql/schema.graphql", {
+  encoding: "utf8"
+})
 
 export interface Context {
   token?: string

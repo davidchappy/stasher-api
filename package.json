@@ -11,7 +11,7 @@
     "build:release": "npm run clean && tsc -p tsconfig.release.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "generate-gql": "graphql-codegen --config codegen.ts",
+    "generate-gql": "graphql-codegen --config src/codegen.ts",
     "generate-supabase": "npx supabase gen types typescript --project-id \"jmxrqchbqtadpzvjasgo\" --schema public > src/supabase/__generated__/supabase.ts",
     "generate": "yarn generate-gql && yarn generate-supabase",
     "dev": "SERVER_PORT=8000 concurrently --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"graphql-codegen --watch '**/*.ts'\"  \"npx tsc --watch\" \"nodemon -q dist/index.js\"",

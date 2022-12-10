@@ -1,6 +1,5 @@
-import { Context } from "./server"
+import { Context } from "./server.js"
 import * as db from "../supabase/adapter"
-import * as types from "./__generated__/graphql"
 
 const Mutations = {
   addStashable: async (
