@@ -16,7 +16,6 @@ const getStashables = (supabase, filter = {}) => __awaiter(void 0, void 0, void 
         .from("stashable")
         .select("*")
         .order("inserted_at", { ascending: true });
-    // .ilike("link", `%${search}%`)
     if (error) {
         throw new Error(error.message);
     }
