@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node dist/index.js",
     "clean": "rimraf coverage dist tmp",
-    "build": "tsc -p tsconfig.json",
+    "build:local": "tsc -p tsconfig.json",
     "build:watch": "tsc -p -w tsconfig.json",
-    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "build": "npm run clean && tsc -p tsconfig.release.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "generate-gql": "graphql-codegen --config src/codegen.ts",
