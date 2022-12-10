@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "clean": "rimraf coverage build tmp",
+    "clean": "rimraf coverage dist tmp",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p -w tsconfig.json",
     "build:release": "npm run clean && tsc -p tsconfig.release.json",
@@ -34,7 +34,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.15.0",
