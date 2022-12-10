@@ -1,6 +1,6 @@
 import { Context } from "./server"
 import * as db from "../supabase/adapter"
-import * as types from "../graphql/__generated__/graphql"
+import * as types from "./__generated__/graphql"
 
 const Query = {
   stashables: async (
