@@ -35,6 +35,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const db = __importStar(require("../supabase/adapter"));
 const Query = {
     stashables: (_, args, context) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("queyr");
         const { supabase } = context;
         return db.getStashables(supabase, args.filter);
     })

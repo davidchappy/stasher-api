@@ -14,7 +14,8 @@ const getStashables = (supabase, filter = {}) => __awaiter(void 0, void 0, void 
     const search = filter === null || filter === void 0 ? void 0 : filter.search;
     const { data, error } = yield supabase
         .from("stashable")
-        .select("id, link, stash_id");
+        .select("*")
+        .order("inserted_at", { ascending: true });
     // .ilike("link", `%${search}%`)
     if (error) {
         throw new Error(error.message);

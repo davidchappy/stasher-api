@@ -15,7 +15,9 @@ export const getStashables = async (
 
   const { data, error } = await supabase!
     .from("stashable")
-    .select("id, link, stash_id")
+    .select("*")
+    .order("inserted_at", { ascending: true })
+
   // .ilike("link", `%${search}%`)
 
   if (error) {

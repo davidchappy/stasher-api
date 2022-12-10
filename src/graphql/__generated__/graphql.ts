@@ -29,12 +29,12 @@ export type MutationAddStashableArgs = {
 
 
 export type MutationDeleteStashableArgs = {
-  id: Scalars['ID'];
+  id: Scalars['Int'];
 };
 
 
 export type MutationUpdateStashableArgs = {
-  id: Scalars['ID'];
+  id: Scalars['Int'];
   link: Scalars['String'];
 };
 
@@ -50,7 +50,7 @@ export type QueryStashablesArgs = {
 
 export type Stashable = {
   __typename?: 'Stashable';
-  id?: Maybe<Scalars['Int']>;
+  id: Scalars['Int'];
   inserted_at?: Maybe<Scalars['String']>;
   link?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['String']>;
@@ -131,7 +131,6 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
@@ -143,7 +142,6 @@ export type ResolversTypes = ResolversObject<{
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
-  ID: Scalars['ID'];
   Int: Scalars['Int'];
   Mutation: {};
   Query: {};
@@ -163,7 +161,7 @@ export type QueryResolvers<ContextType = Context, ParentType extends ResolversPa
 }>;
 
 export type StashableResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Stashable'] = ResolversParentTypes['Stashable']> = ResolversObject<{
-  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   inserted_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   link?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updated_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
