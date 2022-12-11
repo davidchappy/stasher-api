@@ -12,9 +12,25 @@ type Mutation {
   updateStashable(id: Int!, link: String!): Boolean
 }
 
+type OGImage {
+  url: String
+  width: String
+  height: String
+  type: String
+}
+
+type OGResult {
+  ogTitle: String
+  ogType: String
+  ogUrl: String
+  ogDescription: String
+  ogImage: OGImage
+}
+
 type Stashable {
   id: Int!
   link: String
   inserted_at: String
   updated_at: String
+  ogResult: OGResult
 }

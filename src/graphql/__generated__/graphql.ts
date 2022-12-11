@@ -38,6 +38,23 @@ export type MutationUpdateStashableArgs = {
   link: Scalars['String'];
 };
 
+export type OgImage = {
+  __typename?: 'OGImage';
+  height?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['String']>;
+};
+
+export type OgResult = {
+  __typename?: 'OGResult';
+  ogDescription?: Maybe<Scalars['String']>;
+  ogImage?: Maybe<OgImage>;
+  ogTitle?: Maybe<Scalars['String']>;
+  ogType?: Maybe<Scalars['String']>;
+  ogUrl?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   stashables?: Maybe<Array<Maybe<Stashable>>>;
@@ -53,6 +70,7 @@ export type Stashable = {
   id: Scalars['Int'];
   inserted_at?: Maybe<Scalars['String']>;
   link?: Maybe<Scalars['String']>;
+  ogResult?: Maybe<OgResult>;
   updated_at?: Maybe<Scalars['String']>;
 };
 
@@ -133,6 +151,8 @@ export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
+  OGImage: ResolverTypeWrapper<OgImage>;
+  OGResult: ResolverTypeWrapper<OgResult>;
   Query: ResolverTypeWrapper<{}>;
   Stashable: ResolverTypeWrapper<Stashable>;
   StashableFilter: StashableFilter;
@@ -144,6 +164,8 @@ export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
   Int: Scalars['Int'];
   Mutation: {};
+  OGImage: OgImage;
+  OGResult: OgResult;
   Query: {};
   Stashable: Stashable;
   StashableFilter: StashableFilter;
@@ -156,6 +178,23 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
   updateStashable?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationUpdateStashableArgs, 'id' | 'link'>>;
 }>;
 
+export type OgImageResolvers<ContextType = Context, ParentType extends ResolversParentTypes['OGImage'] = ResolversParentTypes['OGImage']> = ResolversObject<{
+  height?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  width?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type OgResultResolvers<ContextType = Context, ParentType extends ResolversParentTypes['OGResult'] = ResolversParentTypes['OGResult']> = ResolversObject<{
+  ogDescription?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  ogImage?: Resolver<Maybe<ResolversTypes['OGImage']>, ParentType, ContextType>;
+  ogTitle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  ogType?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  ogUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   stashables?: Resolver<Maybe<Array<Maybe<ResolversTypes['Stashable']>>>, ParentType, ContextType, Partial<QueryStashablesArgs>>;
 }>;
@@ -164,12 +203,15 @@ export type StashableResolvers<ContextType = Context, ParentType extends Resolve
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   inserted_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   link?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  ogResult?: Resolver<Maybe<ResolversTypes['OGResult']>, ParentType, ContextType>;
   updated_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type Resolvers<ContextType = Context> = ResolversObject<{
   Mutation?: MutationResolvers<ContextType>;
+  OGImage?: OgImageResolvers<ContextType>;
+  OGResult?: OgResultResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Stashable?: StashableResolvers<ContextType>;
 }>;

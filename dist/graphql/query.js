@@ -31,12 +31,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const db = __importStar(require("../supabase/adapter"));
+const open_graph_scraper_1 = __importDefault(require("open-graph-scraper"));
 const Query = {
     stashables: (_, args, context) => __awaiter(void 0, void 0, void 0, function* () {
         const { supabase } = context;
-        return db.getStashables(supabase, args.filter);
+        const stashables = yield db.getStashables(supabase, args.filter);
+        const returnedStashables = yield Promise.all(stashables.map((stashable) => __awaiter(void 0, void 0, void 0, function* () {
+            const ogsOptions = { url: stashable.link || "" };
+            try {
+                const ogsData = yield (0, open_graph_scraper_1.default)(ogsOptions);
+                const ogsResult = ogsData.result;
+                const { ogImage, ogTitle, ogDescription, ogType, ogUrl } = ogsResult;
+                return Object.assign(Object.assign({}, stashable), { ogResult: { ogImage, ogTitle, ogDescription, ogType, ogUrl } });
+            }
+            catch (error) {
+                console.error(`error scraping OpenGraph data for ${ogsOptions.url}`, error);
+                return stashable;
+            }
+        })));
+        return returnedStashables;
     })
 };
 exports.default = Query;
